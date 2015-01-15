@@ -89,17 +89,15 @@ class DjangoClient(Client):
 
         environ = request.META
 
-        result.update({
-            'request': {
-                'method': request.method,
-                'url': uri,
-                'query_string': request.META.get('QUERY_STRING'),
-                'data': data,
-                'cookies': dict(request.COOKIES),
-                'headers': dict(get_headers(environ)),
-                'env': dict(get_environ(environ)),
-            }
-        })
+        result['request'] = {
+            'method': request.method,
+            'url': uri,
+            'query_string': request.META.get('QUERY_STRING'),
+            'data': data,
+            'cookies': dict(request.COOKIES),
+            'headers': dict(get_headers(environ)),
+            'env': dict(get_environ(environ)),
+        }
 
         return result
 
